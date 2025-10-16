@@ -3,6 +3,7 @@
     "name": "algorant-repos",
     "slug": "algorant-repos",
     "version": "1.0.0",
+    "scheme": "algorant-repos",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "light",
