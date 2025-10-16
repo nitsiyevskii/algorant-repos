@@ -1,36 +1,30 @@
 import { createStyles } from "src/utils/createStyles";
 
 export const useStyles = createStyles((theme) => ({
-  container: {
-    alignItems: "center",
+  safeArea: {
     flex: 1,
-    justifyContent: "center",
-    padding: 20,
     backgroundColor: theme.colors.background.white,
   },
-  subtitle: {
-    color: theme.colors.text.secondary,
-    fontSize: theme.fonts.size.md,
-    textAlign: "center",
-    fontWeight: theme.fonts.weight.regular,
-    marginTop: 8,
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background.primary,
   },
-  title: {
-    color: theme.colors.text.primary,
-    fontSize: theme.fonts.size.xxl,
-    fontWeight: theme.fonts.weight.semibold,
-    marginBottom: 10,
-    textAlign: "center",
+  searchContainer: {
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 12,
+    backgroundColor: theme.colors.background.white,
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.separator.secondary,
   },
-  welcomeText: {
-    color: theme.colors.core.primary,
-    fontSize: theme.fonts.size.lg,
-    fontWeight: theme.fonts.weight.medium,
-    marginTop: 16,
+  searchRow: {
+    flexDirection: "row",
+    gap: 12,
   },
-  signOutContainer: {
-    marginTop: 40,
-    width: "100%",
-    paddingHorizontal: 20,
+  searchInput: {
+    flex: 1,
+  },
+  listContainer: {
+    padding: 16,
   },
 }));

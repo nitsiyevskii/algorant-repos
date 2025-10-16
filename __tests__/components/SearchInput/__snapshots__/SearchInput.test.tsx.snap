@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchInput matches snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "backgroundColor": "#F2F2F7",
+        "borderColor": "#C7C7CC",
+        "borderRadius": 10,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "height": 48,
+        "paddingHorizontal": 12,
+      },
+      {
+        "opacity": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "marginRight": 8,
+      }
+    }
+  >
+    <Text
+      color="#8E8E93"
+      name="search"
+      size={20}
+      testID="icon"
+    >
+      search
+    </Text>
+  </View>
+  <TextInput
+    autoCapitalize="none"
+    autoCorrect={false}
+    editable={true}
+    onChangeText={[MockFunction]}
+    placeholder="Search..."
+    placeholderTextColor="#8E8E93"
+    style={
+      {
+        "color": "#000000",
+        "flex": 1,
+        "fontSize": 16,
+        "height": "100%",
+        "paddingVertical": 0,
+      }
+    }
+    testID="text-input"
+    value="test"
+  />
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "marginLeft": 8,
+        "opacity": 1,
+        "padding": 4,
+      }
+    }
+    testID="clear-button"
+  >
+    <Text
+      color="#8E8E93"
+      name="close-circle"
+      size={20}
+      testID="icon"
+    >
+      close-circle
+    </Text>
+  </View>
+</View>
+`;
