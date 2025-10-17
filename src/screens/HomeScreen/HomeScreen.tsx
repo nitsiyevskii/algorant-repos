@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
@@ -8,28 +8,53 @@ import { EmptyState } from "src/components/EmptyState/EmptyState";
 import { FilterButton } from "./components/FilterButton/FilterButton";
 import { RepositoryCard } from "./components/RepositoryCard/RepositoryCard";
 import { GitHubRepository } from "src/types";
-import { useRepositories } from "./hooks/useRepositories";
-import { useRepositorySearch } from "./hooks/useRepositorySearch";
-import { useFavorites } from "./hooks/useFavorites";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
+import { fetchRepositories, toggleFavorite } from "src/store/slices/repositoriesSlice";
+import { setSearchQuery } from "src/store/slices/filtersSlice";
+import {
+  selectFilteredRepositories,
+  selectIsLoading,
+  selectError,
+  selectSearchQuery,
+  selectFavorites,
+  selectHasActiveFilters,
+} from "src/store/selectors/repositoriesSelectors";
 import { useStyles } from "./HomeScreen.styles";
 
 const HomeScreen = () => {
   const styles = useStyles();
+  const dispatch = useAppDispatch();
   
-  // Custom hooks for business logic
-  const { repositories, isLoading, error } = useRepositories();
-  const { searchQuery, setSearchQuery, filteredRepositories } = useRepositorySearch(repositories);
-  const { isFavorite, toggleFavorite } = useFavorites();
+  const filteredRepositories = useAppSelector(selectFilteredRepositories);
+  const isLoading = useAppSelector(selectIsLoading);
+  const error = useAppSelector(selectError);
+  const searchQuery = useAppSelector(selectSearchQuery);
+  const favorites = useAppSelector(selectFavorites);
+  const hasActiveFilters = useAppSelector(selectHasActiveFilters);
+
+  useEffect(() => {
+    dispatch(fetchRepositories());
+  }, [dispatch]);
 
   const handleFilterPress = () => {
     router.push('/filter');
   };
 
+  const handleSearchChange = (text: string) => {
+    dispatch(setSearchQuery(text));
+  };
+
+  const handleToggleFavorite = (id: number) => {
+    dispatch(toggleFavorite(id));
+  };
+
+  const isFavorite = (id: number) => favorites.includes(id);
+
   const renderRepository = ({ item }: { item: GitHubRepository }) => (
     <RepositoryCard
       repository={item}
       isFavorite={isFavorite(item.id)}
-      onToggleFavorite={() => toggleFavorite(item.id)}
+      onToggleFavorite={() => handleToggleFavorite(item.id)}
     />
   );
 
@@ -63,11 +88,11 @@ const HomeScreen = () => {
             <View style={styles.searchInput}>
               <SearchInput
                 value={searchQuery}
-                onChangeText={setSearchQuery}
+                onChangeText={handleSearchChange}
                 placeholder="Search repositories..."
               />
             </View>
-            <FilterButton onPress={handleFilterPress} />
+            <FilterButton onPress={handleFilterPress} hasActiveFilters={hasActiveFilters} />
           </View>
         </View>
 

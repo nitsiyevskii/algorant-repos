@@ -11,16 +11,3 @@ export interface RepositoryFilters {
   };
 }
 
-export const DEFAULT_FILTERS: RepositoryFilters = {
-  organizations: [],
-  languages: [],
-  stars: {
-    min: null,
-    max: null,
-  },
-  forks: {
-    min: null,
-    max: null,
-  },
-};
-

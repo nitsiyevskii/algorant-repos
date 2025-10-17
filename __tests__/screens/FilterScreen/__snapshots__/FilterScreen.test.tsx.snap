@@ -165,6 +165,268 @@ exports[`FilterScreen matches snapshot 1`] = `
               }
             }
           >
+            Stars
+          </Text>
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "flex": 1,
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "#3C3C43",
+                    "fontSize": 14,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Min
+              </Text>
+              <TextInput
+                keyboardType="number-pad"
+                onChangeText={[Function]}
+                placeholder="0"
+                placeholderTextColor="#8E8E93"
+                style={
+                  {
+                    "backgroundColor": "#F2F2F7",
+                    "borderColor": "#C7C7CC",
+                    "borderRadius": 8,
+                    "borderWidth": 1,
+                    "color": "#000000",
+                    "fontSize": 16,
+                    "paddingHorizontal": 12,
+                    "paddingVertical": 10,
+                  }
+                }
+                testID="range-input-min-stars"
+                value=""
+              />
+            </View>
+            <Text
+              style={
+                {
+                  "color": "#3C3C43",
+                  "fontSize": 18,
+                  "marginHorizontal": 12,
+                  "marginTop": 20,
+                }
+              }
+            >
+              -
+            </Text>
+            <View
+              style={
+                {
+                  "flex": 1,
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "#3C3C43",
+                    "fontSize": 14,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Max
+              </Text>
+              <TextInput
+                keyboardType="number-pad"
+                onChangeText={[Function]}
+                placeholder="∞"
+                placeholderTextColor="#8E8E93"
+                style={
+                  {
+                    "backgroundColor": "#F2F2F7",
+                    "borderColor": "#C7C7CC",
+                    "borderRadius": 8,
+                    "borderWidth": 1,
+                    "color": "#000000",
+                    "fontSize": 16,
+                    "paddingHorizontal": 12,
+                    "paddingVertical": 10,
+                  }
+                }
+                testID="range-input-max-stars"
+                value=""
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "borderBottomColor": "#C6C6C8",
+            "borderBottomWidth": 1,
+            "paddingHorizontal": 16,
+            "paddingVertical": 20,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "marginBottom": 8,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "#000000",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "marginBottom": 16,
+              }
+            }
+          >
+            Forks
+          </Text>
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "flex": 1,
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "#3C3C43",
+                    "fontSize": 14,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Min
+              </Text>
+              <TextInput
+                keyboardType="number-pad"
+                onChangeText={[Function]}
+                placeholder="0"
+                placeholderTextColor="#8E8E93"
+                style={
+                  {
+                    "backgroundColor": "#F2F2F7",
+                    "borderColor": "#C7C7CC",
+                    "borderRadius": 8,
+                    "borderWidth": 1,
+                    "color": "#000000",
+                    "fontSize": 16,
+                    "paddingHorizontal": 12,
+                    "paddingVertical": 10,
+                  }
+                }
+                testID="range-input-min-forks"
+                value=""
+              />
+            </View>
+            <Text
+              style={
+                {
+                  "color": "#3C3C43",
+                  "fontSize": 18,
+                  "marginHorizontal": 12,
+                  "marginTop": 20,
+                }
+              }
+            >
+              -
+            </Text>
+            <View
+              style={
+                {
+                  "flex": 1,
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "#3C3C43",
+                    "fontSize": 14,
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                Max
+              </Text>
+              <TextInput
+                keyboardType="number-pad"
+                onChangeText={[Function]}
+                placeholder="∞"
+                placeholderTextColor="#8E8E93"
+                style={
+                  {
+                    "backgroundColor": "#F2F2F7",
+                    "borderColor": "#C7C7CC",
+                    "borderRadius": 8,
+                    "borderWidth": 1,
+                    "color": "#000000",
+                    "fontSize": 16,
+                    "paddingHorizontal": 12,
+                    "paddingVertical": 10,
+                  }
+                }
+                testID="range-input-max-forks"
+                value=""
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "borderBottomColor": "#C6C6C8",
+            "borderBottomWidth": 1,
+            "paddingHorizontal": 16,
+            "paddingVertical": 20,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "marginBottom": 8,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "#000000",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "marginBottom": 16,
+              }
+            }
+          >
             Organization
           </Text>
           <View
@@ -843,268 +1105,6 @@ exports[`FilterScreen matches snapshot 1`] = `
               >
                 Kotlin
               </Text>
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        style={
-          {
-            "borderBottomColor": "#C6C6C8",
-            "borderBottomWidth": 1,
-            "paddingHorizontal": 16,
-            "paddingVertical": 20,
-          }
-        }
-      >
-        <View
-          style={
-            {
-              "marginBottom": 8,
-            }
-          }
-        >
-          <Text
-            style={
-              {
-                "color": "#000000",
-                "fontSize": 18,
-                "fontWeight": "600",
-                "marginBottom": 16,
-              }
-            }
-          >
-            Stars
-          </Text>
-          <View
-            style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-              }
-            }
-          >
-            <View
-              style={
-                {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  {
-                    "color": "#3C3C43",
-                    "fontSize": 14,
-                    "marginBottom": 8,
-                  }
-                }
-              >
-                Min
-              </Text>
-              <TextInput
-                keyboardType="number-pad"
-                onChangeText={[Function]}
-                placeholder="0"
-                placeholderTextColor="#8E8E93"
-                style={
-                  {
-                    "backgroundColor": "#F2F2F7",
-                    "borderColor": "#C7C7CC",
-                    "borderRadius": 8,
-                    "borderWidth": 1,
-                    "color": "#000000",
-                    "fontSize": 16,
-                    "paddingHorizontal": 12,
-                    "paddingVertical": 10,
-                  }
-                }
-                testID="range-input-min-stars"
-                value=""
-              />
-            </View>
-            <Text
-              style={
-                {
-                  "color": "#3C3C43",
-                  "fontSize": 18,
-                  "marginHorizontal": 12,
-                  "marginTop": 20,
-                }
-              }
-            >
-              -
-            </Text>
-            <View
-              style={
-                {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  {
-                    "color": "#3C3C43",
-                    "fontSize": 14,
-                    "marginBottom": 8,
-                  }
-                }
-              >
-                Max
-              </Text>
-              <TextInput
-                keyboardType="number-pad"
-                onChangeText={[Function]}
-                placeholder="∞"
-                placeholderTextColor="#8E8E93"
-                style={
-                  {
-                    "backgroundColor": "#F2F2F7",
-                    "borderColor": "#C7C7CC",
-                    "borderRadius": 8,
-                    "borderWidth": 1,
-                    "color": "#000000",
-                    "fontSize": 16,
-                    "paddingHorizontal": 12,
-                    "paddingVertical": 10,
-                  }
-                }
-                testID="range-input-max-stars"
-                value=""
-              />
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        style={
-          {
-            "borderBottomColor": "#C6C6C8",
-            "borderBottomWidth": 1,
-            "paddingHorizontal": 16,
-            "paddingVertical": 20,
-          }
-        }
-      >
-        <View
-          style={
-            {
-              "marginBottom": 8,
-            }
-          }
-        >
-          <Text
-            style={
-              {
-                "color": "#000000",
-                "fontSize": 18,
-                "fontWeight": "600",
-                "marginBottom": 16,
-              }
-            }
-          >
-            Forks
-          </Text>
-          <View
-            style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-              }
-            }
-          >
-            <View
-              style={
-                {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  {
-                    "color": "#3C3C43",
-                    "fontSize": 14,
-                    "marginBottom": 8,
-                  }
-                }
-              >
-                Min
-              </Text>
-              <TextInput
-                keyboardType="number-pad"
-                onChangeText={[Function]}
-                placeholder="0"
-                placeholderTextColor="#8E8E93"
-                style={
-                  {
-                    "backgroundColor": "#F2F2F7",
-                    "borderColor": "#C7C7CC",
-                    "borderRadius": 8,
-                    "borderWidth": 1,
-                    "color": "#000000",
-                    "fontSize": 16,
-                    "paddingHorizontal": 12,
-                    "paddingVertical": 10,
-                  }
-                }
-                testID="range-input-min-forks"
-                value=""
-              />
-            </View>
-            <Text
-              style={
-                {
-                  "color": "#3C3C43",
-                  "fontSize": 18,
-                  "marginHorizontal": 12,
-                  "marginTop": 20,
-                }
-              }
-            >
-              -
-            </Text>
-            <View
-              style={
-                {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  {
-                    "color": "#3C3C43",
-                    "fontSize": 14,
-                    "marginBottom": 8,
-                  }
-                }
-              >
-                Max
-              </Text>
-              <TextInput
-                keyboardType="number-pad"
-                onChangeText={[Function]}
-                placeholder="∞"
-                placeholderTextColor="#8E8E93"
-                style={
-                  {
-                    "backgroundColor": "#F2F2F7",
-                    "borderColor": "#C7C7CC",
-                    "borderRadius": 8,
-                    "borderWidth": 1,
-                    "color": "#000000",
-                    "fontSize": 16,
-                    "paddingHorizontal": 12,
-                    "paddingVertical": 10,
-                  }
-                }
-                testID="range-input-max-forks"
-                value=""
-              />
             </View>
           </View>
         </View>

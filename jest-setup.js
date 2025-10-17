@@ -1,7 +1,60 @@
-// Mock fetch globally
 global.fetch = jest.fn();
 
-// Mock expo-router
+jest.mock('react-redux', () => ({
+  useDispatch: jest.fn(() => jest.fn()),
+  useSelector: jest.fn((selector) => selector({
+    repositories: {
+      items: [],
+      favorites: [],
+      isLoading: false,
+      error: null,
+      lastFetched: null,
+    },
+    filters: {
+      organizations: [],
+      languages: [],
+      stars: { min: null, max: null },
+      forks: { min: null, max: null },
+      searchQuery: '',
+    },
+  })),
+  Provider: ({ children }) => children,
+  connect: () => (component) => component,
+}));
+
+jest.mock('redux-persist', () => ({
+  persistStore: jest.fn(() => ({
+    purge: jest.fn(),
+    flush: jest.fn(),
+    pause: jest.fn(),
+    persist: jest.fn(),
+  })),
+  persistReducer: jest.fn((config, reducer) => reducer),
+  FLUSH: 'FLUSH',
+  REHYDRATE: 'REHYDRATE',
+  PAUSE: 'PAUSE',
+  PERSIST: 'PERSIST',
+  PURGE: 'PURGE',
+  REGISTER: 'REGISTER',
+}));
+
+jest.mock('redux-persist/integration/react', () => ({
+  PersistGate: ({ children }) => children,
+}));
+
+jest.mock('@react-native-async-storage/async-storage', () => ({
+  default: {
+    setItem: jest.fn(() => Promise.resolve()),
+    getItem: jest.fn(() => Promise.resolve(null)),
+    removeItem: jest.fn(() => Promise.resolve()),
+    clear: jest.fn(() => Promise.resolve()),
+    getAllKeys: jest.fn(() => Promise.resolve([])),
+    multiGet: jest.fn(() => Promise.resolve([])),
+    multiSet: jest.fn(() => Promise.resolve()),
+    multiRemove: jest.fn(() => Promise.resolve()),
+  },
+}));
+
 jest.mock('expo-router', () => ({
   router: {
     push: jest.fn(),
@@ -28,7 +81,6 @@ jest.mock('expo-router', () => ({
   Redirect: 'Redirect',
 }));
 
-// Mock SafeAreaView - use actual View component
 jest.mock('react-native-safe-area-context', () => {
   const RN = jest.requireActual('react-native');
   return {
@@ -38,7 +90,6 @@ jest.mock('react-native-safe-area-context', () => {
   };
 });
 
-// Mock @expo/vector-icons to avoid async Icon updates
 jest.mock('@expo/vector-icons', () => {
   const React = require('react');
   const { Text } = require('react-native');

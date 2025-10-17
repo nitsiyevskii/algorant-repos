@@ -1,30 +1,13 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import HomeScreen from 'src/screens/HomeScreen/HomeScreen';
 
-// Mock the hooks
-jest.mock('src/screens/HomeScreen/hooks/useRepositories', () => ({
-  useRepositories: jest.fn(),
-}));
+jest.mock('react-redux');
 
-jest.mock('src/screens/HomeScreen/hooks/useRepositorySearch', () => ({
-  useRepositorySearch: jest.fn(),
-}));
-
-jest.mock('src/screens/HomeScreen/hooks/useFavorites', () => ({
-  useFavorites: jest.fn(),
-}));
-
-// Mock navigation
-jest.mock('expo-router', () => ({
-  router: {
-    push: jest.fn(),
-  },
-}));
-
-import { useRepositories } from 'src/screens/HomeScreen/hooks/useRepositories';
-import { useRepositorySearch } from 'src/screens/HomeScreen/hooks/useRepositorySearch';
-import { useFavorites } from 'src/screens/HomeScreen/hooks/useFavorites';
+const mockDispatch = jest.fn();
+const mockUseDispatch = useDispatch as unknown as jest.Mock;
+const mockUseSelector = useSelector as unknown as jest.Mock;
 
 const mockRepositories = [
   {
@@ -56,30 +39,25 @@ const mockRepositories = [
 describe('HomeScreen', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockUseDispatch.mockReturnValue(mockDispatch);
     
-    (useRepositories as jest.Mock).mockReturnValue({
-      repositories: mockRepositories,
-      isLoading: false,
-      error: null,
-      refetch: jest.fn(),
-    });
-
-    (useRepositorySearch as jest.Mock).mockReturnValue({
-      searchQuery: '',
-      setSearchQuery: jest.fn(),
-      clearSearch: jest.fn(),
-      filteredRepositories: mockRepositories,
-      hasResults: true,
-    });
-
-    (useFavorites as jest.Mock).mockReturnValue({
-      favorites: new Set(),
-      toggleFavorite: jest.fn(),
-      isFavorite: jest.fn(() => false),
-      addFavorite: jest.fn(),
-      removeFavorite: jest.fn(),
-      clearFavorites: jest.fn(),
-      favoriteCount: 0,
+    mockUseSelector.mockImplementation((selector) => {
+      const state = {
+        repositories: {
+          items: mockRepositories,
+          favorites: [],
+          isLoading: false,
+          error: null,
+        },
+        filters: {
+          organizations: [],
+          languages: [],
+          stars: { min: null, max: null },
+          forks: { min: null, max: null },
+          searchQuery: '',
+        },
+      };
+      return selector(state);
     });
   });
 
@@ -89,23 +67,47 @@ describe('HomeScreen', () => {
   });
 
   it('shows loading spinner when loading', () => {
-    (useRepositories as jest.Mock).mockReturnValue({
-      repositories: [],
-      isLoading: true,
-      error: null,
-      refetch: jest.fn(),
+    mockUseSelector.mockImplementation((selector) => {
+      const state = {
+        repositories: {
+          items: [],
+          favorites: [],
+          isLoading: true,
+          error: null,
+        },
+        filters: {
+          organizations: [],
+          languages: [],
+          stars: { min: null, max: null },
+          forks: { min: null, max: null },
+          searchQuery: '',
+        },
+      };
+      return selector(state);
     });
 
     const { getByTestId } = render(<HomeScreen />);
-    expect(getByTestId).toBeTruthy();
+    expect(getByTestId('loading-spinner')).toBeTruthy();
   });
 
   it('shows error state when error occurs', () => {
-    (useRepositories as jest.Mock).mockReturnValue({
-      repositories: [],
-      isLoading: false,
-      error: 'Failed to fetch',
-      refetch: jest.fn(),
+    mockUseSelector.mockImplementation((selector) => {
+      const state = {
+        repositories: {
+          items: [],
+          favorites: [],
+          isLoading: false,
+          error: 'Failed to fetch',
+        },
+        filters: {
+          organizations: [],
+          languages: [],
+          stars: { min: null, max: null },
+          forks: { min: null, max: null },
+          searchQuery: '',
+        },
+      };
+      return selector(state);
     });
 
     const { getByText } = render(<HomeScreen />);
@@ -114,19 +116,23 @@ describe('HomeScreen', () => {
   });
 
   it('shows empty state when no repositories', () => {
-    (useRepositories as jest.Mock).mockReturnValue({
-      repositories: [],
-      isLoading: false,
-      error: null,
-      refetch: jest.fn(),
-    });
-
-    (useRepositorySearch as jest.Mock).mockReturnValue({
-      searchQuery: '',
-      setSearchQuery: jest.fn(),
-      clearSearch: jest.fn(),
-      filteredRepositories: [],
-      hasResults: false,
+    mockUseSelector.mockImplementation((selector) => {
+      const state = {
+        repositories: {
+          items: [],
+          favorites: [],
+          isLoading: false,
+          error: null,
+        },
+        filters: {
+          organizations: [],
+          languages: [],
+          stars: { min: null, max: null },
+          forks: { min: null, max: null },
+          searchQuery: '',
+        },
+      };
+      return selector(state);
     });
 
     const { getByText } = render(<HomeScreen />);
@@ -152,17 +158,34 @@ describe('HomeScreen', () => {
     expect(getByText('Filter')).toBeTruthy();
   });
 
+  it('dispatches fetchRepositories on mount', () => {
+    render(<HomeScreen />);
+    expect(mockDispatch).toHaveBeenCalled();
+  });
+
   it('matches snapshot', () => {
     const { toJSON } = render(<HomeScreen />);
     expect(toJSON()).toMatchSnapshot();
   });
 
   it('matches snapshot when loading', () => {
-    (useRepositories as jest.Mock).mockReturnValue({
-      repositories: [],
-      isLoading: true,
-      error: null,
-      refetch: jest.fn(),
+    mockUseSelector.mockImplementation((selector) => {
+      const state = {
+        repositories: {
+          items: [],
+          favorites: [],
+          isLoading: true,
+          error: null,
+        },
+        filters: {
+          organizations: [],
+          languages: [],
+          stars: { min: null, max: null },
+          forks: { min: null, max: null },
+          searchQuery: '',
+        },
+      };
+      return selector(state);
     });
 
     const { toJSON } = render(<HomeScreen />);
@@ -170,15 +193,26 @@ describe('HomeScreen', () => {
   });
 
   it('matches snapshot when error', () => {
-    (useRepositories as jest.Mock).mockReturnValue({
-      repositories: [],
-      isLoading: false,
-      error: 'Test error',
-      refetch: jest.fn(),
+    mockUseSelector.mockImplementation((selector) => {
+      const state = {
+        repositories: {
+          items: [],
+          favorites: [],
+          isLoading: false,
+          error: 'Test error',
+        },
+        filters: {
+          organizations: [],
+          languages: [],
+          stars: { min: null, max: null },
+          forks: { min: null, max: null },
+          searchQuery: '',
+        },
+      };
+      return selector(state);
     });
 
     const { toJSON } = render(<HomeScreen />);
     expect(toJSON()).toMatchSnapshot();
   });
 });
-

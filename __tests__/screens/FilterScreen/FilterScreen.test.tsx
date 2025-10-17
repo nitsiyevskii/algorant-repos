@@ -1,18 +1,32 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { router } from 'expo-router';
 import { FilterScreen } from 'src/screens/FilterScreen/FilterScreen';
 
-jest.mock('expo-router', () => ({
-  router: {
-    back: jest.fn(),
-    push: jest.fn(),
-  },
-}));
+jest.mock('react-redux');
+
+const mockDispatch = jest.fn();
+const mockUseDispatch = useDispatch as unknown as jest.Mock;
+const mockUseSelector = useSelector as unknown as jest.Mock;
 
 describe('FilterScreen', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockUseDispatch.mockReturnValue(mockDispatch);
+    
+    mockUseSelector.mockImplementation((selector) => {
+      const state = {
+        filters: {
+          organizations: [],
+          languages: [],
+          stars: { min: null, max: null },
+          forks: { min: null, max: null },
+          searchQuery: '',
+        },
+      };
+      return selector(state);
+    });
   });
 
   it('renders correctly', () => {
@@ -67,70 +81,89 @@ describe('FilterScreen', () => {
     expect(router.back).toHaveBeenCalledTimes(1);
   });
 
-  it('toggles organization selection', () => {
+  it('dispatches toggleOrganization when organization is toggled', () => {
     const { getByTestId } = render(<FilterScreen />);
 
     const checkbox = getByTestId('checkbox-perawallet');
     fireEvent.press(checkbox);
 
-    expect(checkbox).toBeTruthy();
+    expect(mockDispatch).toHaveBeenCalled();
   });
 
-  it('toggles language selection', () => {
+  it('dispatches toggleLanguage when language is toggled', () => {
     const { getByTestId } = render(<FilterScreen />);
 
     const chip = getByTestId('chip-TypeScript');
     fireEvent.press(chip);
 
-    expect(chip).toBeTruthy();
+    expect(mockDispatch).toHaveBeenCalled();
   });
 
-  it('resets filters when reset button is pressed', () => {
-    const { getByText, getByTestId } = render(<FilterScreen />);
-
-    const checkbox = getByTestId('checkbox-perawallet');
-    fireEvent.press(checkbox);
+  it('dispatches resetFilters when reset button is pressed', () => {
+    const { getByText } = render(<FilterScreen />);
 
     const resetButton = getByText('Reset');
     fireEvent.press(resetButton);
 
-    expect(resetButton).toBeTruthy();
+    expect(mockDispatch).toHaveBeenCalled();
   });
 
-  it('updates star range min value', () => {
+  it('dispatches setStarMin when star min input changes', () => {
     const { getByTestId } = render(<FilterScreen />);
 
     const minInput = getByTestId('range-input-min-stars');
     fireEvent.changeText(minInput, '100');
 
-    expect(minInput.props.value).toBe('100');
+    expect(mockDispatch).toHaveBeenCalled();
   });
 
-  it('updates star range max value', () => {
+  it('dispatches setStarMax when star max input changes', () => {
     const { getByTestId } = render(<FilterScreen />);
 
     const maxInput = getByTestId('range-input-max-stars');
     fireEvent.changeText(maxInput, '500');
 
-    expect(maxInput.props.value).toBe('500');
+    expect(mockDispatch).toHaveBeenCalled();
   });
 
-  it('updates fork range min value', () => {
+  it('dispatches setForkMin when fork min input changes', () => {
     const { getByTestId } = render(<FilterScreen />);
 
     const minInput = getByTestId('range-input-min-forks');
     fireEvent.changeText(minInput, '10');
 
-    expect(minInput.props.value).toBe('10');
+    expect(mockDispatch).toHaveBeenCalled();
   });
 
-  it('updates fork range max value', () => {
+  it('dispatches setForkMax when fork max input changes', () => {
     const { getByTestId } = render(<FilterScreen />);
 
     const maxInput = getByTestId('range-input-max-forks');
     fireEvent.changeText(maxInput, '50');
 
-    expect(maxInput.props.value).toBe('50');
+    expect(mockDispatch).toHaveBeenCalled();
+  });
+
+  it('displays selected filters from Redux state', () => {
+    mockUseSelector.mockImplementation((selector) => {
+      const state = {
+        filters: {
+          organizations: ['perawallet'],
+          languages: ['TypeScript', 'JavaScript'],
+          stars: { min: 100, max: 500 },
+          forks: { min: 10, max: 50 },
+          searchQuery: '',
+        },
+      };
+      return selector(state);
+    });
+
+    const { getByDisplayValue } = render(<FilterScreen />);
+
+    expect(getByDisplayValue('100')).toBeTruthy();
+    expect(getByDisplayValue('500')).toBeTruthy();
+    expect(getByDisplayValue('10')).toBeTruthy();
+    expect(getByDisplayValue('50')).toBeTruthy();
   });
 
   it('matches snapshot', () => {
@@ -138,4 +171,3 @@ describe('FilterScreen', () => {
     expect(toJSON()).toMatchSnapshot();
   });
 });
-

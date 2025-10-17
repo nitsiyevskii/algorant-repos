@@ -1,11 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "src/hooks/useTheme";
-import { RepositoryFilters, DEFAULT_FILTERS } from "src/types";
-import { ORGANIZATIONS } from "src/constants";
+import { ORGANIZATION_OPTIONS, AVAILABLE_LANGUAGES } from "src/constants";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
+import {
+  toggleOrganization,
+  toggleLanguage,
+  setStarMin,
+  setStarMax,
+  setForkMin,
+  setForkMax,
+  resetFilters,
+} from "src/store/slices/filtersSlice";
+import {
+  selectOrganizationFilters,
+  selectLanguageFilters,
+  selectStarFilters,
+  selectForkFilters,
+} from "src/store/selectors/repositoriesSelectors";
 import { MultiSelectField } from "./components/MultiSelectField/MultiSelectField";
 import { RangeInput } from "./components/RangeInput/RangeInput";
 import { useStyles } from "./FilterScreen.styles";
@@ -13,66 +28,39 @@ import { useStyles } from "./FilterScreen.styles";
 export const FilterScreen = () => {
   const theme = useTheme();
   const styles = useStyles();
+  const dispatch = useAppDispatch();
 
-  const [filters, setFilters] = useState<RepositoryFilters>(DEFAULT_FILTERS);
+  const selectedOrganizations = useAppSelector(selectOrganizationFilters);
+  const selectedLanguages = useAppSelector(selectLanguageFilters);
+  const stars = useAppSelector(selectStarFilters);
+  const forks = useAppSelector(selectForkFilters);
 
-  const organizations = [
-    { label: "Pera Wallet", value: ORGANIZATIONS.perawallet },
-    { label: "Algorand Foundation", value: ORGANIZATIONS.algorandfoundation },
-    { label: "Algorand", value: ORGANIZATIONS.algorand },
-  ];
-
-  const languages = [
-    { label: "TypeScript", value: "TypeScript" },
-    { label: "JavaScript", value: "JavaScript" },
-    { label: "Python", value: "Python" },
-    { label: "Go", value: "Go" },
-    { label: "Java", value: "Java" },
-    { label: "Rust", value: "Rust" },
-    { label: "Swift", value: "Swift" },
-    { label: "Kotlin", value: "Kotlin" },
-  ];
-
-  const toggleOrganization = (org: string) => {
-    setFilters((prev) => ({
-      ...prev,
-      organizations: prev.organizations.includes(org)
-        ? prev.organizations.filter((o) => o !== org)
-        : [...prev.organizations, org],
-    }));
+  const handleToggleOrganization = (org: string) => {
+    dispatch(toggleOrganization(org));
   };
 
-  const toggleLanguage = (lang: string) => {
-    setFilters((prev) => ({
-      ...prev,
-      languages: prev.languages.includes(lang)
-        ? prev.languages.filter((l) => l !== lang)
-        : [...prev.languages, lang],
-    }));
+  const handleToggleLanguage = (lang: string) => {
+    dispatch(toggleLanguage(lang));
   };
 
-  const updateStarRange = (type: "min" | "max", value: number | null) => {
-    setFilters((prev) => ({
-      ...prev,
-      stars: {
-        ...prev.stars,
-        [type]: value,
-      },
-    }));
+  const handleStarMinChange = (value: number | null) => {
+    dispatch(setStarMin(value));
   };
 
-  const updateForkRange = (type: "min" | "max", value: number | null) => {
-    setFilters((prev) => ({
-      ...prev,
-      forks: {
-        ...prev.forks,
-        [type]: value,
-      },
-    }));
+  const handleStarMaxChange = (value: number | null) => {
+    dispatch(setStarMax(value));
+  };
+
+  const handleForkMinChange = (value: number | null) => {
+    dispatch(setForkMin(value));
+  };
+
+  const handleForkMaxChange = (value: number | null) => {
+    dispatch(setForkMax(value));
   };
 
   const handleReset = () => {
-    setFilters(DEFAULT_FILTERS);
+    dispatch(resetFilters());
   };
 
   const handleApply = () => {
@@ -96,39 +84,39 @@ export const FilterScreen = () => {
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.section}>
+          <RangeInput
+            label="Stars"
+            minValue={stars.min}
+            maxValue={stars.max}
+            onMinChange={handleStarMinChange}
+            onMaxChange={handleStarMaxChange}
+          />
+        </View>
+        <View style={styles.section}>
+          <RangeInput
+            label="Forks"
+            minValue={forks.min}
+            maxValue={forks.max}
+            onMinChange={handleForkMinChange}
+            onMaxChange={handleForkMaxChange}
+          />
+        </View>
+        <View style={styles.section}>
           <MultiSelectField
             label="Organization"
-            options={organizations}
-            selectedValues={filters.organizations}
-            onToggle={toggleOrganization}
+            options={ORGANIZATION_OPTIONS}
+            selectedValues={selectedOrganizations}
+            onToggle={handleToggleOrganization}
             type="checkbox"
           />
         </View>
         <View style={styles.section}>
           <MultiSelectField
             label="Language"
-            options={languages}
-            selectedValues={filters.languages}
-            onToggle={toggleLanguage}
+            options={AVAILABLE_LANGUAGES}
+            selectedValues={selectedLanguages}
+            onToggle={handleToggleLanguage}
             type="chip"
-          />
-        </View>
-        <View style={styles.section}>
-          <RangeInput
-            label="Stars"
-            minValue={filters.stars.min}
-            maxValue={filters.stars.max}
-            onMinChange={(value) => updateStarRange("min", value)}
-            onMaxChange={(value) => updateStarRange("max", value)}
-          />
-        </View>
-        <View style={styles.section}>
-          <RangeInput
-            label="Forks"
-            minValue={filters.forks.min}
-            maxValue={filters.forks.max}
-            onMinChange={(value) => updateForkRange("min", value)}
-            onMaxChange={(value) => updateForkRange("max", value)}
           />
         </View>
       </ScrollView>

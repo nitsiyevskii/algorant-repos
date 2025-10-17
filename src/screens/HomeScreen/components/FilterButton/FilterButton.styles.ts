@@ -18,5 +18,17 @@ export const useStyles = createStyles((theme) => ({
     fontWeight: theme.fonts.weight.medium,
     color: theme.colors.text.primary,
   },
+  activeText: {
+    color: theme.colors.core.primary,
+  },
+  badge: {
+    position: 'absolute',
+    top: -2,
+    right: -2,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: theme.colors.core.primary,
+  },
 }));
 
