@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HomeScreen matches snapshot 1`] = `
+exports[`FavoritesScreen matches snapshot when empty 1`] = `
 <View
   edges={
     [
@@ -9,7 +9,7 @@ exports[`HomeScreen matches snapshot 1`] = `
   }
   style={
     {
-      "backgroundColor": "#FFFFFF",
+      "backgroundColor": "#F2F2F7",
       "flex": 1,
     }
   }
@@ -17,162 +17,112 @@ exports[`HomeScreen matches snapshot 1`] = `
   <View
     style={
       {
-        "backgroundColor": "#F2F2F7",
         "flex": 1,
       }
     }
   >
-    <View
-      style={
-        {
-          "backgroundColor": "#FFFFFF",
-          "borderBottomColor": "#E5E5EA",
-          "borderBottomWidth": 1,
-          "flexDirection": "row",
-          "gap": 12,
-          "paddingBottom": 12,
-          "paddingHorizontal": 16,
-          "paddingTop": 16,
-        }
-      }
-    >
-      <View
-        style={
-          {
-            "flex": 1,
-          }
-        }
-      >
-        <View
-          style={
-            [
-              {
-                "alignItems": "center",
-                "backgroundColor": "#F2F2F7",
-                "borderColor": "#C7C7CC",
-                "borderRadius": 10,
-                "borderWidth": 1,
-                "flexDirection": "row",
-                "height": 48,
-                "paddingHorizontal": 12,
-              },
-              {
-                "opacity": 1,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              {
-                "marginRight": 8,
-              }
-            }
-          >
-            <Text
-              color="#8E8E93"
-              name="search"
-              size={20}
-              testID="icon"
-            >
-              search
-            </Text>
-          </View>
-          <TextInput
-            autoCapitalize="none"
-            autoCorrect={false}
-            editable={true}
-            onChangeText={[Function]}
-            placeholder="Search repositories..."
-            placeholderTextColor="#8E8E93"
-            style={
-              {
-                "color": "#000000",
-                "flex": 1,
-                "fontSize": 16,
-                "height": "100%",
-                "paddingVertical": 0,
-              }
-            }
-            testID="text-input"
-            value=""
-          />
-        </View>
-      </View>
-      <View
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
-        }
-        accessibilityValue={
-          {
-            "max": undefined,
-            "min": undefined,
-            "now": undefined,
-            "text": undefined,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "#F2F2F7",
-            "borderColor": "#C7C7CC",
-            "borderRadius": 10,
-            "borderWidth": 1,
-            "flexDirection": "row",
-            "gap": 8,
-            "height": 48,
-            "justifyContent": "center",
-            "opacity": 1,
-            "paddingHorizontal": 16,
-          }
-        }
-      >
-        <View>
-          <Text
-            color="#000000"
-            name="filter"
-            size={20}
-            testID="icon"
-          >
-            filter
-          </Text>
-        </View>
-        <Text
-          style={
-            [
-              {
-                "color": "#000000",
-                "fontSize": 16,
-                "fontWeight": "500",
-              },
-              false,
-            ]
-          }
-        >
-          Filter
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       ListEmptyComponent={[Function]}
       contentContainerStyle={
         {
+          "flexGrow": 1,
+          "padding": 16,
+        }
+      }
+      data={[]}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      keyExtractor={[Function]}
+      onContentSizeChange={[Function]}
+      onLayout={[Function]}
+      onMomentumScrollBegin={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={0.0001}
+      stickyHeaderIndices={[]}
+      viewabilityConfigCallbackPairs={[]}
+    >
+      <View>
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+              "paddingHorizontal": 32,
+            }
+          }
+        >
+          <Text
+            color="#8E8E93"
+            name="heart-outline"
+            size={64}
+            testID="icon"
+          >
+            heart-outline
+          </Text>
+          <Text
+            style={
+              {
+                "color": "#3C3C43",
+                "fontSize": 18,
+                "fontWeight": "500",
+                "marginTop": 16,
+                "textAlign": "center",
+              }
+            }
+          >
+            No favorites yet
+          </Text>
+          <Text
+            style={
+              {
+                "color": "#8E8E93",
+                "fontSize": 16,
+                "marginTop": 8,
+                "textAlign": "center",
+              }
+            }
+          >
+            Star repositories to see them here
+          </Text>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`FavoritesScreen matches snapshot with favorites 1`] = `
+<View
+  edges={
+    [
+      "top",
+    ]
+  }
+  style={
+    {
+      "backgroundColor": "#F2F2F7",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      ListEmptyComponent={[Function]}
+      contentContainerStyle={
+        {
+          "flexGrow": 1,
           "padding": 16,
         }
       }
@@ -181,29 +131,28 @@ exports[`HomeScreen matches snapshot 1`] = `
           {
             "created_at": "2023-01-01T00:00:00Z",
             "default_branch": "main",
-            "description": "Test repository",
+            "description": "Favorite repository",
             "fork": false,
-            "forks_count": 10,
-            "full_name": "algorand/test-repo",
-            "html_url": "https://github.com/algorand/test-repo",
+            "forks_count": 20,
+            "full_name": "algorand/favorite-repo",
+            "html_url": "https://github.com/algorand/favorite-repo",
             "id": 1,
-            "language": "TypeScript",
-            "name": "test-repo",
-            "open_issues_count": 5,
+            "language": "JavaScript",
+            "name": "favorite-repo",
+            "open_issues_count": 10,
             "owner": {
               "avatar_url": "https://test.com/avatar.png",
               "html_url": "https://github.com/algorand",
               "login": "algorand",
             },
             "pushed_at": "2023-01-02T00:00:00Z",
-            "stargazers_count": 100,
+            "stargazers_count": 200,
             "topics": [
               "blockchain",
-              "algorand",
             ],
             "updated_at": "2023-01-02T00:00:00Z",
             "visibility": "public",
-            "watchers_count": 50,
+            "watchers_count": 100,
           },
         ]
       }
@@ -298,7 +247,7 @@ exports[`HomeScreen matches snapshot 1`] = `
                     }
                   }
                 >
-                  test-repo
+                  favorite-repo
                 </Text>
                 <Text
                   numberOfLines={1}
@@ -354,12 +303,12 @@ exports[`HomeScreen matches snapshot 1`] = `
                 testID="favorite-button"
               >
                 <Text
-                  color="#000000"
-                  name="heart-outline"
+                  color="#FF3B30"
+                  name="heart"
                   size={24}
                   testID="icon"
                 >
-                  heart-outline
+                  heart
                 </Text>
               </View>
             </View>
@@ -374,7 +323,7 @@ exports[`HomeScreen matches snapshot 1`] = `
                 }
               }
             >
-              Test repository
+              Favorite repository
             </Text>
             <View
               style={
@@ -410,7 +359,7 @@ exports[`HomeScreen matches snapshot 1`] = `
                     }
                   }
                 >
-                  100
+                  200
                 </Text>
               </View>
               <View
@@ -444,7 +393,7 @@ exports[`HomeScreen matches snapshot 1`] = `
                     }
                   }
                 >
-                  TypeScript
+                  JavaScript
                 </Text>
               </View>
               <View
@@ -472,7 +421,7 @@ exports[`HomeScreen matches snapshot 1`] = `
                     }
                   }
                 >
-                  10
+                  20
                 </Text>
               </View>
             </View>
@@ -481,72 +430,5 @@ exports[`HomeScreen matches snapshot 1`] = `
       </View>
     </RCTScrollView>
   </View>
-</View>
-`;
-
-exports[`HomeScreen matches snapshot when error 1`] = `
-<View
-  style={
-    {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
-      "paddingHorizontal": 32,
-    }
-  }
->
-  <Text
-    color="#8E8E93"
-    name="alert-circle"
-    size={64}
-    testID="icon"
-  >
-    alert-circle
-  </Text>
-  <Text
-    style={
-      {
-        "color": "#3C3C43",
-        "fontSize": 18,
-        "fontWeight": "500",
-        "marginTop": 16,
-        "textAlign": "center",
-      }
-    }
-  >
-    Failed to load repositories
-  </Text>
-  <Text
-    style={
-      {
-        "color": "#8E8E93",
-        "fontSize": 16,
-        "marginTop": 8,
-        "textAlign": "center",
-      }
-    }
-  >
-    Test error
-  </Text>
-</View>
-`;
-
-exports[`HomeScreen matches snapshot when loading 1`] = `
-<View
-  style={
-    {
-      "alignItems": "center",
-      "backgroundColor": "#F2F2F7",
-      "flex": 1,
-      "justifyContent": "center",
-    }
-  }
-  testID="loading-spinner"
->
-  <ActivityIndicator
-    color="#007AFF"
-    size="large"
-    testID="activity-indicator"
-  />
 </View>
 `;

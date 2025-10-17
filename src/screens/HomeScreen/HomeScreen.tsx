@@ -5,11 +5,14 @@ import { router } from "expo-router";
 import { SearchInput } from "src/components/SearchInput/SearchInput";
 import { LoadingSpinner } from "src/components/LoadingSpinner/LoadingSpinner";
 import { EmptyState } from "src/components/EmptyState/EmptyState";
+import { RepositoryCard } from "src/components/RepositoryCard/RepositoryCard";
 import { FilterButton } from "./components/FilterButton/FilterButton";
-import { RepositoryCard } from "./components/RepositoryCard/RepositoryCard";
 import { GitHubRepository } from "src/types";
 import { useAppDispatch, useAppSelector } from "src/store/hooks";
-import { fetchRepositories, toggleFavorite } from "src/store/slices/repositoriesSlice";
+import {
+  fetchRepositories,
+  toggleFavorite,
+} from "src/store/slices/repositoriesSlice";
 import { setSearchQuery } from "src/store/slices/filtersSlice";
 import {
   selectFilteredRepositories,
@@ -24,7 +27,7 @@ import { useStyles } from "./HomeScreen.styles";
 const HomeScreen = () => {
   const styles = useStyles();
   const dispatch = useAppDispatch();
-  
+
   const filteredRepositories = useAppSelector(selectFilteredRepositories);
   const isLoading = useAppSelector(selectIsLoading);
   const error = useAppSelector(selectError);
@@ -37,7 +40,7 @@ const HomeScreen = () => {
   }, [dispatch]);
 
   const handleFilterPress = () => {
-    router.push('/filter');
+    router.push("/filter");
   };
 
   const handleSearchChange = (text: string) => {
@@ -61,7 +64,9 @@ const HomeScreen = () => {
   const renderEmpty = () => (
     <EmptyState
       icon="search"
-      message={searchQuery ? "No repositories found" : "No repositories available"}
+      message={
+        searchQuery ? "No repositories found" : "No repositories available"
+      }
       description={searchQuery ? "Try adjusting your search" : undefined}
     />
   );
@@ -81,19 +86,20 @@ const HomeScreen = () => {
   }
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top']}>
+    <SafeAreaView style={styles.safeArea} edges={["top"]}>
       <View style={styles.container}>
         <View style={styles.searchContainer}>
-          <View style={styles.searchRow}>
-            <View style={styles.searchInput}>
-              <SearchInput
-                value={searchQuery}
-                onChangeText={handleSearchChange}
-                placeholder="Search repositories..."
-              />
-            </View>
-            <FilterButton onPress={handleFilterPress} hasActiveFilters={hasActiveFilters} />
+          <View style={styles.searchInput}>
+            <SearchInput
+              value={searchQuery}
+              onChangeText={handleSearchChange}
+              placeholder="Search repositories..."
+            />
           </View>
+          <FilterButton
+            onPress={handleFilterPress}
+            hasActiveFilters={hasActiveFilters}
+          />
         </View>
 
         <FlatList

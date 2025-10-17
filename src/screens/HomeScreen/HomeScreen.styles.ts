@@ -10,16 +10,14 @@ export const useStyles = createStyles((theme) => ({
     backgroundColor: theme.colors.background.primary,
   },
   searchContainer: {
+    flexDirection: "row",
+    gap: 12,
     paddingHorizontal: 16,
     paddingTop: 16,
     paddingBottom: 12,
     backgroundColor: theme.colors.background.white,
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.separator.secondary,
-  },
-  searchRow: {
-    flexDirection: "row",
-    gap: 12,
   },
   searchInput: {
     flex: 1,
