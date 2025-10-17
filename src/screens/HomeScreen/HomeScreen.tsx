@@ -1,6 +1,7 @@
 import React from "react";
 import { View, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
 import { SearchInput } from "src/components/SearchInput/SearchInput";
 import { LoadingSpinner } from "src/components/LoadingSpinner/LoadingSpinner";
 import { EmptyState } from "src/components/EmptyState/EmptyState";
@@ -21,8 +22,7 @@ const HomeScreen = () => {
   const { isFavorite, toggleFavorite } = useFavorites();
 
   const handleFilterPress = () => {
-    // TODO: Implement filter modal
-    console.log("Filter pressed");
+    router.push('/filter');
   };
 
   const renderRepository = ({ item }: { item: GitHubRepository }) => (

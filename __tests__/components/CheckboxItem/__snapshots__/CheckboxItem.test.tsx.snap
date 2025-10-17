@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxItem matches snapshot when selected 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "opacity": 1,
+      "paddingVertical": 12,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "borderColor": "#007AFF",
+        "borderRadius": 6,
+        "borderWidth": 2,
+        "height": 24,
+        "justifyContent": "center",
+        "marginRight": 12,
+        "width": 24,
+      }
+    }
+  >
+    <Text
+      color="#007AFF"
+      name="checkmark"
+      size={18}
+      testID="icon"
+    >
+      checkmark
+    </Text>
+  </View>
+  <Text
+    style={
+      {
+        "color": "#000000",
+        "fontSize": 16,
+      }
+    }
+  >
+    Pera Wallet
+  </Text>
+</View>
+`;
+
+exports[`CheckboxItem matches snapshot when unselected 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "opacity": 1,
+      "paddingVertical": 12,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "borderColor": "#007AFF",
+        "borderRadius": 6,
+        "borderWidth": 2,
+        "height": 24,
+        "justifyContent": "center",
+        "marginRight": 12,
+        "width": 24,
+      }
+    }
+  />
+  <Text
+    style={
+      {
+        "color": "#000000",
+        "fontSize": 16,
+      }
+    }
+  >
+    Algorand
+  </Text>
+</View>
+`;

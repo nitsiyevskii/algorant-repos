@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chip matches snapshot when selected 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "#007AFF",
+      "borderColor": "#007AFF",
+      "borderRadius": 20,
+      "borderWidth": 1,
+      "opacity": 1,
+      "paddingHorizontal": 16,
+      "paddingVertical": 8,
+    }
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "color": "#000000",
+          "fontSize": 14,
+          "fontWeight": "500",
+        },
+        {
+          "color": "#FFFFFF",
+        },
+      ]
+    }
+  >
+    Swift
+  </Text>
+</View>
+`;
+
+exports[`Chip matches snapshot when unselected 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "#E5E5EA",
+      "borderColor": "#C6C6C8",
+      "borderRadius": 20,
+      "borderWidth": 1,
+      "opacity": 1,
+      "paddingHorizontal": 16,
+      "paddingVertical": 8,
+    }
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "color": "#000000",
+          "fontSize": 14,
+          "fontWeight": "500",
+        },
+        false,
+      ]
+    }
+  >
+    Rust
+  </Text>
+</View>
+`;
