@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import repositoriesReducer from './slices/repositoriesSlice';
 import filtersReducer from './slices/filtersSlice';
+import repositoryDetailsReducer from './slices/repositoryDetailsSlice';
 
 const persistConfig = {
   key: 'root',
@@ -14,6 +15,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   repositories: repositoriesReducer,
   filters: filtersReducer,
+  repositoryDetails: repositoryDetailsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

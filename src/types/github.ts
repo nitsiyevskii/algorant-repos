@@ -8,6 +8,7 @@ export interface GitHubRepository {
     html_url: string;
   };
   html_url: string;
+  homepage?: string | null;
   description: string | null;
   fork: boolean;
   created_at: string;
@@ -21,6 +22,14 @@ export interface GitHubRepository {
   topics: string[];
   visibility: string;
   default_branch: string;
+  size?: number;
+  license?: {
+    key: string;
+    name: string;
+    spdx_id: string;
+    url: string;
+    node_id: string;
+  } | null;
 }
 
 export interface GitHubOrganization {

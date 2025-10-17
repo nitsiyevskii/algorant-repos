@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import type { RootState } from '../index';
+import type { RootState } from 'src/store';
 import { GitHubRepository } from 'src/types';
 
 export const selectRepositories = (state: RootState) => state.repositories.items;

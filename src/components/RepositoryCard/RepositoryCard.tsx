@@ -22,7 +22,7 @@ export const RepositoryCard: React.FC<RepositoryCardProps> = ({
   const styles = useStyles();
 
   const handlePress = () => {
-    router.push(`/repository/${repository.full_name}`);
+    router.push(`/repository/${encodeURIComponent(repository.full_name)}`);
   };
 
   return (

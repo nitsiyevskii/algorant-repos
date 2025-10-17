@@ -104,7 +104,7 @@ describe('RepositoryCard', () => {
     const card = getByText('test-repo').parent?.parent?.parent;
     if (card) {
       fireEvent.press(card);
-      expect(router.push).toHaveBeenCalledWith('/repository/algorand/test-repo');
+      expect(router.push).toHaveBeenCalledWith('/repository/algorand%2Ftest-repo');
     }
   });
 
